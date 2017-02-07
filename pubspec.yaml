@@ -1,0 +1,6 @@
+name: boilerplate
+version: 0.3.0
+description: boilerplate for jaguar
+dependencies:
+  jaguar: '>=0.3.0 <0.4.0'
+  jaguar_reflect: '>=0.3.0 <0.4.1'
