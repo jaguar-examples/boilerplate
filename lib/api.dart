@@ -1,26 +1,22 @@
 library api;
 
-import 'dart:async';
-
 import 'package:jaguar/jaguar.dart';
-import 'package:jaguar/interceptors.dart';
 
-@RouteGroup(path: '/info')
+@Api(path: '/info')
 class ExampleRouteGroup {
   @Get()
-  @WrapEncodeToJson()
-  Map info() => {
+  Response<String> info(Context ctx) => Response.json({
         'name': 'jaguar',
         'motto': 'Speed. Simplicity. Extensiblity.',
         'degree of awesomeness': 'infinity!',
-      };
+      });
 }
 
 @Api(path: '/api')
 class ExampleApi {
-  @Group()
+  @IncludeApi()
   final ExampleRouteGroup exampleRoutes = new ExampleRouteGroup();
 
-  @Route(path: '/version', methods: const ['GET'])
-  num version() => 0.1;
+  @Get(path: '/version')
+  num version(Context ctx) => 0.1;
 }
