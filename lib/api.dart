@@ -1,22 +1,29 @@
 library api;
 
+import 'dart:async';
 import 'package:jaguar/jaguar.dart';
-
-@Api(path: '/info')
-class ExampleRouteGroup {
-  @Get()
-  Response<String> info(Context ctx) => Response.json({
-        'name': 'jaguar',
-        'motto': 'Speed. Simplicity. Extensiblity.',
-        'degree of awesomeness': 'infinity!',
-      });
-}
 
 @Api(path: '/api')
 class ExampleApi {
-  @IncludeApi()
-  final ExampleRouteGroup exampleRoutes = new ExampleRouteGroup();
-
+  // A simple get route
   @Get(path: '/version')
-  num version(Context ctx) => 0.1;
+  double version(_) => 0.1;
+
+  // A simple post route
+  @Post(path: '/add')
+  int add(Context ctx) => ctx.query.getInt('a') + ctx.query.getInt('b');
+
+  // A simple get JSON route
+  @GetJson(path: '/info')
+  Map info(_) => {
+        'server': 'Jaguar',
+        'motto': 'Simple. Fast. Flexible. Extensible.',
+      };
+
+  // A simple post JSON route
+  @PostJson(path: '/sub')
+  Future<Map> sub(Context ctx) async {
+    Map body = await ctx.req.bodyAsJsonMap();
+    return {'result': body['a'] - body['b']};
+  }
 }
