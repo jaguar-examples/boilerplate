@@ -1,22 +1,16 @@
 # boilerplate_reflect
 
-Example showing how to add routes to Jaguar using Api classes.
+Example shows how to add routes to Jaguar using `Controller` classes.
 
-Contains a server built with Jaguar. It exposes four routes for demonstration
-purposes:
+It exposes four routes for demonstration purposes:
 
 1. A simple GET route
 2. A simple POST route that uses query parameters
 3. A simple JSON GET route
 4. A simple JSON POST route that has JSON body
 
-It also includes a sample client to test these APIs.
-
 ```dart
-import 'dart:async';
-import 'package:jaguar/jaguar.dart';
-
-@Api(path: '/api')
+@Controller(path: '/api')
 class ExampleApi {
   // A simple get route
   @Get(path: '/version')
@@ -29,14 +23,14 @@ class ExampleApi {
   // A simple get JSON route
   @GetJson(path: '/info')
   Map info(_) => {
-        'server': 'Jaguar',
-        'motto': 'Simple. Fast. Flexible. Extensible.',
-      };
+    'server': 'Jaguar',
+    'motto': 'Simple. Fast. Flexible. Extensible.',
+  };
 
   // A simple post JSON route
   @PostJson(path: '/sub')
   Future<Map> sub(Context ctx) async {
-    Map body = await ctx.req.bodyAsJsonMap();
+    Map body = await ctx.bodyAsJsonMap();
     return {'result': body['a'] - body['b']};
   }
 }

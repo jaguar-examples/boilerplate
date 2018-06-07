@@ -1,7 +1,7 @@
 name: boilerplate
 description: Example that shows how to use jaguar_reflect package to build Apis using Jaguar.dart
-version: 0.6.0
+version: 2.1.1
 dependencies:
-  jaguar: ^1.2.8
-  jaguar_reflect: ^1.2.6
+  jaguar: ^2.1.5
+  jaguar_reflect: ^2.1.2
   http: ^0.11.3
