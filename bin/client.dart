@@ -9,35 +9,28 @@ const int kPort = 10000;
 
 final http.Client _client = new http.Client();
 
-Future<Null> printHttpClientResponse(http.Response resp) async {
-  print('=========================');
-  print("body:");
-  print(resp.body);
-  print('=========================');
-}
-
 Future<Null> execVersion() async {
   String url = "http://$kHostname:$kPort/api/version";
   http.Response resp = await _client.get(url);
-  printHttpClientResponse(resp);
+  print(resp.body);
 }
 
 Future<Null> execAdd() async {
   http.Response resp = await _client.post(
       new Uri.http('$kHostname:$kPort', '/api/add', {'a': '5', 'b': '20'}));
-  await printHttpClientResponse(resp);
+  print(resp.body);
 }
 
 Future<Null> execInfo() async {
   String url = "http://$kHostname:$kPort/api/info";
   http.Response resp = await _client.get(url);
-  printHttpClientResponse(resp);
+  print(resp.body);
 }
 
 Future<Null> execSubtract() async {
   String url = "http://$kHostname:$kPort/api/sub";
   http.Response resp = await _client.post(url, body: '{"a": 10, "b": 5}');
-  await printHttpClientResponse(resp);
+  print(resp.body);
 }
 
 main() async {
