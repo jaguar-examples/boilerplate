@@ -1,6 +1,11 @@
-# boilerplate_reflect
+# boilerplate for Jaguar projects
 
-Example shows how to add routes to Jaguar using `Controller` classes.
+This project contains a **simple example** shows how to add routes to Jaguar using `Controller` classes.
+
+The repository can be found at: [https://github.com/jaguar-examples/boilerplate](https://github.com/jaguar-examples/boilerplate).
+One would typically want to clone it and edit it in IntelliJ IDE.
+
+# Server description
 
 It exposes four routes for demonstration purposes:
 
@@ -33,5 +38,42 @@ class ExampleApi {
     Map body = await ctx.bodyAsJsonMap();
     return {'result': body['a'] - body['b']};
   }
+}
+```
+
+# Client description
+
+Contains code to access the example server.
+
+```dart
+Future<Null> execVersion() async {
+  String url = "http://$kHostname:$kPort/api/version";
+  http.Response resp = await _client.get(url);
+  print(resp.body);
+}
+
+Future<Null> execAdd() async {
+  http.Response resp = await _client.post(
+      new Uri.http('$kHostname:$kPort', '/api/add', {'a': '5', 'b': '20'}));
+  print(resp.body);
+}
+
+Future<Null> execInfo() async {
+  String url = "http://$kHostname:$kPort/api/info";
+  http.Response resp = await _client.get(url);
+  print(resp.body);
+}
+
+Future<Null> execSubtract() async {
+  String url = "http://$kHostname:$kPort/api/sub";
+  http.Response resp = await _client.post(url, body: '{"a": 10, "b": 5}');
+  print(resp.body);
+}
+
+main() async {
+  await execVersion();
+  await execAdd();
+  await execInfo();
+  await execSubtract();
 }
 ```
