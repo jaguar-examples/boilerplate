@@ -1,14 +1,14 @@
 name: jaguar_boilerplate
 description: Example that shows how to use jaguar_reflect package to build Apis using Jaguar.dart
-version: 2.1.2
+version: 2.2.0
 author: Ravi Teja Gudapati <tejainece@gmail.com>
 homepage: https://github.com/jaguar-examples/boilerplate
 environment:
   sdk: ">=2.0.0 <3.0.0"
 
 dependencies:
-  jaguar: ^2.1.37
-  jaguar_reflect: ^2.1.4
+  jaguar: ^2.2.6
+  jaguar_reflect: ^2.2.0
   http: ^0.11.3
 
 executables:
