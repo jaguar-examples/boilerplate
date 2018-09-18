@@ -2,8 +2,8 @@ import 'dart:async';
 import 'package:jaguar/jaguar.dart';
 import 'package:jaguar_reflect/jaguar_reflect.dart';
 
-@Controller(path: '/api')
-class ExampleApi {
+@GenController(path: '/api')
+class ExampleApi extends Controller {
   // A simple get route
   @Get(path: '/version')
   double version(_) => 0.1;
@@ -28,7 +28,7 @@ class ExampleApi {
 }
 
 main(List<String> args) async {
-  final server = new Jaguar(port: 10000, multiThread: true);
-  server.add(reflect(new ExampleApi()));
+  final server = Jaguar(port: 10000);
+  server.add(reflect(ExampleApi()));
   await server.serve();
 }
